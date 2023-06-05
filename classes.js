@@ -28,9 +28,8 @@ class GoodsList {
         return sorted
     }
     add(new_good) {
-       // console.log('true or false',this.#goods.includes(new_good.name));
-        //this.#goods.push(new_good);
-        return this.#goods.includes(new_good.name)
+        const flag = this.#goods.includes(new_good);
+        flag === true ? console.log('товар уже есть в каталоге'):this.#goods.push(new_good);
     }
     remove(id) {
         return this.#goods.splice(id,1);    
@@ -117,19 +116,20 @@ good4 = new Good(3,"good4","good4",25,40,true);
 good5 = new Good(4,"item5","good5",26,50,true);
 
 
-goods = [];
-goods.push(good1,good2,good3,good4,good5);
+const goods = [];
+goods.push(good1,good3,good4,good5);
 console.log('Goods:',goods);
 
 //создание каталога товаров, отфильтрованного по вхождению названия товара 
 l = new GoodsList(goods,"goo",true,true); //сортировка по возрастнаю значения price
 console.log('list',l.list);
 l1 = new GoodsList(goods,"ite",true,false); //сортировка по убыванию price
-console.log('list',l1.list);
+console.log('list 1',l1.list);
 
 //добавление в каталог нового товара
-console.log('//////true or false///////',l.add(good4));
-//console.log('add to list',l.list);
+l.add(good4); //товар есть в каталоге, выдаст сообщение
+l.add(good2); //товара нет в каталоге
+console.log('catalog',l.list);
 
 //удаление элемента по его индексу
 l.remove(3);
