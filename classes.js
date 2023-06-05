@@ -27,8 +27,10 @@ class GoodsList {
         (this.sortPrice ? arr.sort((a, b) => b.price - a.price):arr) ;       
         return sorted
     }
-    add (new_good) {
-       return this.#goods.push(new_good);
+    add(new_good) {
+       // console.log('true or false',this.#goods.includes(new_good.name));
+        //this.#goods.push(new_good);
+        return this.#goods.includes(new_good.name)
     }
     remove(id) {
         return this.#goods.splice(id,1);    
@@ -126,8 +128,8 @@ l1 = new GoodsList(goods,"ite",true,false); //сортировка по убыв
 console.log('list',l1.list);
 
 //добавление в каталог нового товара
-l.add(good4);
-console.log('add to list',l.list);
+console.log('//////true or false///////',l.add(good4));
+//console.log('add to list',l.list);
 
 //удаление элемента по его индексу
 l.remove(3);
