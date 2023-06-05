@@ -82,6 +82,9 @@ class Basket {
                 this.goods.splice(index,1);
             }
         }
+        else {
+            console.log(`товар ${good.name} не найден`)
+        }
     }
     //удаление корзины
     clear() {
@@ -90,11 +93,16 @@ class Basket {
     //Удаляет из корзины товары, имеющие признак available === false (использовать filter())
     removeUnavailable() {
         const arr = this.goods.filter(element => element.available == false);
-        arr.map( x => {
-            const el = (element) => element.name == x.name;
-            const index = this.goods.findIndex(el);
-            this.goods.splice(index,1);
-        })                          
+        if (arr.length > 0) {
+            arr.map( x => {
+                const el = (element) => element.name == x.name;
+                const index = this.goods.findIndex(el);
+                this.goods.splice(index,1);
+            })
+        }
+        else {
+            console.log(`товары с признаком available = false не найдены`)
+        }                        
     }    
 }
 
@@ -151,6 +159,7 @@ basket_list.remove(good1,4);
 console.log("basket after good's amount removing: ",basket_list);
 basket_list.remove(good3,100); //уменьшение количества товара до 0
 console.log("basket after good's amount removing: ",basket_list);
+basket_list.remove(good3,4); //если такого товара нет в корзине
 
 //Удаляет из корзины товары, имеющие признак available === false
 basket_list.removeUnavailable();
